@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Blogs</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: rgba(50, 50, 50, 0.8);
+            color: white;
+        }
+
+        header {
+            background-color: rgba(76, 175, 80, 0.9);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 3px solid #4CAF50;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 1.8em;
+        }
+
+        .post-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .post-list li {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 15px 0;
+        }
+
+        .post-list li:last-child {
+            border-bottom: none;
+        }
+
+        .post-list a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .post-list a:hover {
+            color: rgba(76, 175, 80, 1);
+            text-decoration: underline;
+        }
+        .post{
+            background-color: rgb(51, 47, 47);
+            margin: 10px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .post a{
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Blogs</h1>
+    </header>
+    <main>
+        <h2>Recent Posts</h2>
+        <ul class="post-list">
+            {% for post in allposts %}
+              <div class="post">
+                <li><a href="{% url "single" post.id %}">{{ post.title }} <p>{{ post.content|slice:":100" }}{% if post.content|length > 100 %}...{% endif %}</p></a>
+                           
+                </li>
+                <p>Created at: {{post.created_at}}</p>
+            </div>
+            {% endfor %}
+        </ul>
+    </main>
+</body>
+</html>
